@@ -1,23 +1,46 @@
-function addTask() {
-            const taskInput = document.getElementById('taskInput');
-            const taskValue = taskInput.value.trim();
-            if (taskValue === '') {
-                alert('Please enter a task');
-                return;
-            }
+let cart = {};
+let totalPrice = 0;
 
-            const taskList = document.getElementById('taskList');
-            const li = document.createElement('li');
-            li.innerHTML = `
-                ${taskValue}
-                <button class="delete" onclick="removeTask(this)">Delete</button>
-            `;
-            taskList.appendChild(li);
+function addToCart(dishName, price) {
+    if (cart[dishName]) {
+        cart[dishName].quantity++;
+    } else {
+        cart[dishName] = { price, quantity: 1 };
+    }
+    updateCart();
+}
 
-            taskInput.value = '';
-        }
+function updateCart() {
+    const cartItems = document.getElementById('cartItems');
+    cartItems.innerHTML = '';
+    totalPrice = 0;
 
-        function removeTask(button) {
-            const taskList = document.getElementById('taskList');
-            taskList.removeChild(button.parentElement);
-        }
+    for (let dishName in cart) {
+        const item = cart[dishName];
+        const li = document.createElement('li');
+        li.textContent = ${dishName} - ${item.quantity} x $${item.price};
+        cartItems.appendChild(li);
+        totalPrice += item.price * item.quantity;
+    }
+
+    document.getElementById('totalPrice').textContent = totalPrice;
+}
+
+function checkout() {
+    if (Object.keys(cart).length > 0) {
+        // Hide the cart and show order confirmation
+        document.getElementById('cart').style.display = 'none';
+        document.getElementById('orderConfirmation').stylessss.display = 'block';
+    } else {
+        alert('Your cart is empty!');
+    }
+}
+
+function confirmOrder() {
+    alert('Your order has been confirmed!');
+    // Reset the cart and go back to initial state
+    cart = {};
+    updateCart();
+    document.getElementById('cart').stylessss.display = 'block';
+    document.getElementById('orderConfirmation').stylessss.display = 'none';
+}
