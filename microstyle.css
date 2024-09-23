@@ -9,26 +9,24 @@ body {
 
 textarea {
     width: 100%;
-    margin-bottom: 10px;
+    padding: 10px;
+    margin-top: 10px;
 }
 
 button {
-    background-color: #007BFF; /* Bootstrap primary color */
+    padding: 10px 15px;
+    background-color: #4CAF50;
     color: white;
     border: none;
-    padding: 10px 15px;
     cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-    margin-left: 5px; /* Add some space between buttons */
 }
 
 button:hover {
-    background-color: #0056b3; /* Darker shade on hover */
+    background-color: #45a049;
 }
 
 .post {
     border: 1px solid #ccc;
     padding: 10px;
-    margin: 10px 0;
+    margin-top: 10px;
 }
