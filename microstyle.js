@@ -7,7 +7,6 @@ function createPost() {
     const post = {
         id: posts.length,
         content: postContent,
-        liked: false,
         likes: 0,
         date: new Date().toLocaleString() // Get current date and time
     };
@@ -33,22 +32,25 @@ function renderPosts() {
         dateDiv.textContent = `Posted on: ${post.date}`; // Display date
 
         const likeButton = document.createElement('button');
-        likeButton.textContent = post.liked ? `Unlike (${post.likes})` : `Like (${post.likes})`;
-        
+        likeButton.textContent = `Like (${post.likes})`;
         likeButton.onclick = () => {
-            if (post.liked) {
+            post.likes++;
+            renderPosts();
+        };
+
+        const unlikeButton = document.createElement('button');
+        unlikeButton.textContent = `Unlike`;
+        unlikeButton.onclick = () => {
+            if (post.likes > 0) {
                 post.likes--;
-                post.liked = false;
-            } else {
-                post.likes++;
-                post.liked = true;
             }
             renderPosts();
         };
 
         postDiv.appendChild(contentDiv);
         postDiv.appendChild(dateDiv); // Append date
-        postDiv.appendChild(likeButton);
+        postDiv.appendChild(likeButton); // Append like button
+        postDiv.appendChild(unlikeButton); // Append unlike button
         feed.appendChild(postDiv);
     });
 }
