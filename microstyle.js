@@ -1,57 +1,54 @@
 let posts = [];
 
 function createPost() {
-    const content = document.getElementById('post-content').value.trim();
-    if (!content) {
-        alert('Please enter some content for your post.');
-        return;
-    }
-    
-    const newPost = {
-        content: content,
+    const postContent = document.getElementById('post-content').value;
+    if (postContent.trim() === "") return;
+
+    const post = {
+        id: posts.length,
+        content: postContent,
+        liked: false,
         likes: 0,
-        liked: false
+        date: new Date().toLocaleString() // Get current date and time
     };
-    
-    posts.push(newPost);
-    document.getElementById('post-content').value = ''; // Clear textarea
-    updateFeed();
+
+    posts.push(post);
+    document.getElementById('post-content').value = '';
+    renderPosts();
 }
 
-function updateFeed() {
+function renderPosts() {
     const feed = document.getElementById('feed');
-    feed.innerHTML = ''; // Clear previous feed
+    feed.innerHTML = ''; // Clear existing posts
 
-    posts.forEach((post, index) => {
+    posts.forEach(post => {
         const postDiv = document.createElement('div');
         postDiv.className = 'post';
-        
-        const content = document.createElement('p');
-        content.textContent = post.content;
-        
+
+        const contentDiv = document.createElement('p');
+        contentDiv.textContent = post.content;
+
+        const dateDiv = document.createElement('p');
+        dateDiv.className = 'post-date';
+        dateDiv.textContent = `Posted on: ${post.date}`; // Display date
+
         const likeButton = document.createElement('button');
-        likeButton.textContent = post.liked ? 'Unlike' : 'Like';
-        likeButton.onclick = () => toggleLike(index);
-
-        const likeCount = document.createElement('span');
-        likeCount.textContent = ` (${post.likes})`;
-
-        postDiv.appendChild(content);
-        postDiv.appendChild(likeButton);
-        postDiv.appendChild(likeCount);
+        likeButton.textContent = post.liked ? `Unlike (${post.likes})` : `Like (${post.likes})`;
         
+        likeButton.onclick = () => {
+            if (post.liked) {
+                post.likes--;
+                post.liked = false;
+            } else {
+                post.likes++;
+                post.liked = true;
+            }
+            renderPosts();
+        };
+
+        postDiv.appendChild(contentDiv);
+        postDiv.appendChild(dateDiv); // Append date
+        postDiv.appendChild(likeButton);
         feed.appendChild(postDiv);
     });
-}
-
-function toggleLike(index) {
-    const post = posts[index];
-    if (post.liked) {
-        post.likes--;
-        post.liked = false;
-    } else {
-        post.likes++;
-        post.liked = true;
-    }
-    updateFeed();
 }
