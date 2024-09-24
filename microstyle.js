@@ -62,4 +62,3 @@ function renderPosts() {
         feed.appendChild(postDiv);
     });
 }
-
