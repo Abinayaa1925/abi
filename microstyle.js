@@ -81,10 +81,10 @@ function renderPosts() {
         };
 
         const commentsDiv = document.createElement('div');
-        post.comments.forEach((comment, index) => {
+        post.comments.forEach((comment) => {
             const commentDiv = document.createElement('div');
             const commentText = document.createElement('p');
-            commentText.textContent = comment.content;
+            commentText.textContent = comment.content; // Set comment text
 
             const likeCommentButton = document.createElement('button');
             likeCommentButton.textContent = `Like (${comment.likes})`;
