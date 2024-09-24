@@ -2,20 +2,20 @@ let posts = JSON.parse(localStorage.getItem('posts')) || []; // Load posts from 
 
 function createPost() {
     const postContent = document.getElementById('post-content').value;
-    if (postContent.trim() === "") return;
+    if (postContent.trim() === "") return; // Don't allow empty posts
 
     const post = {
         id: posts.length,
         content: postContent,
         likes: 0,
-        date: new Date().toLocaleString(), // Get current date and time
+        date: new Date().toLocaleString(), // Current date and time
         comments: [] // Initialize comments as an empty array
     };
 
     posts.push(post);
     localStorage.setItem('posts', JSON.stringify(posts)); // Save to localStorage
-    document.getElementById('post-content').value = '';
-    renderPosts();
+    document.getElementById('post-content').value = ''; // Clear textarea
+    renderPosts(); // Re-render the posts
 }
 
 function renderPosts() {
@@ -99,4 +99,3 @@ function renderPosts() {
 
 // Initial call to render posts from localStorage
 renderPosts();
-
