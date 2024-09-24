@@ -8,7 +8,8 @@ function createPost() {
         id: posts.length,
         content: postContent,
         likes: 0,
-        date: new Date().toLocaleString() // Get current date and time
+        date: new Date().toLocaleString(), // Get current date and time
+        comments: [] // Initialize comments as an empty array
     };
 
     posts.push(post);
@@ -54,11 +55,39 @@ function renderPosts() {
             renderPosts();
         };
 
+        // Comment section
+        const commentInput = document.createElement('input');
+        commentInput.type = 'text';
+        commentInput.placeholder = 'Add a comment...';
+        commentInput.className = 'comment-input';
+
+        const commentButton = document.createElement('button');
+        commentButton.textContent = 'Comment';
+        commentButton.onclick = () => {
+            if (commentInput.value.trim() !== "") {
+                post.comments.push(commentInput.value.trim());
+                commentInput.value = ''; // Clear input field
+                renderPosts(); // Re-render to show comments
+            }
+        };
+
+        const commentsDiv = document.createElement('div');
+        post.comments.forEach(comment => {
+            const commentDiv = document.createElement('p');
+            commentDiv.textContent = comment;
+            commentsDiv.appendChild(commentDiv);
+        });
+
+        // Append elements to postDiv
         postDiv.appendChild(contentDiv);
-        postDiv.appendChild(dateDiv); // Append date
-        postDiv.appendChild(likeButton); // Append like button
-        postDiv.appendChild(unlikeButton); // Append unlike button
-        postDiv.appendChild(deleteButton); // Append delete button
+        postDiv.appendChild(dateDiv);
+        postDiv.appendChild(likeButton);
+        postDiv.appendChild(unlikeButton);
+        postDiv.appendChild(deleteButton);
+        postDiv.appendChild(commentInput); // Add comment input
+        postDiv.appendChild(commentButton); // Add comment button
+        postDiv.appendChild(commentsDiv); // Add comments display
+
         feed.appendChild(postDiv);
     });
 }
