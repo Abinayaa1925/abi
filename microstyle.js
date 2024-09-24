@@ -8,7 +8,6 @@ function createPost() {
         id: posts.length,
         content: postContent,
         likes: 0,
-        unlikes: 0,
         date: new Date().toLocaleString(), // Current date and time
         comments: [] // Initialize comments as an empty array
     };
@@ -42,16 +41,6 @@ function renderPosts() {
             renderPosts();
         };
 
-        const unlikeButton = document.createElement('button');
-        unlikeButton.textContent = `Unlike (${post.unlikes})`;
-        unlikeButton.onclick = () => {
-            if (post.unlikes < post.likes) {
-                post.unlikes++;
-                localStorage.setItem('posts', JSON.stringify(posts)); // Update localStorage
-                renderPosts();
-            }
-        };
-
         const deleteButton = document.createElement('button');
         deleteButton.textContent = `Delete`;
         deleteButton.onclick = () => {
@@ -67,7 +56,7 @@ function renderPosts() {
         commentInput.className = 'comment-input';
 
         const commentButton = document.createElement('button');
-        commentButton.textContent = 'Comment';
+        commentButton.textContent = `Comment (${post.comments.length})`; // Show comment count
         commentButton.onclick = () => {
             if (commentInput.value.trim() !== "") {
                 const comment = {
@@ -100,27 +89,13 @@ function renderPosts() {
             commentsDiv.appendChild(commentDiv);
         });
 
-        // Count of comments
-        const commentCount = document.createElement('p');
-        commentCount.textContent = `Comments (${post.comments.length})`;
-
-        // Display likes and unlikes counts
-        const likesCount = document.createElement('p');
-        likesCount.textContent = `Likes: ${post.likes}`;
-        const unlikesCount = document.createElement('p');
-        unlikesCount.textContent = `Unlikes: ${post.unlikes}`;
-
         // Append elements to postDiv
         postDiv.appendChild(contentDiv);
         postDiv.appendChild(dateDiv);
         postDiv.appendChild(likeButton);
-        postDiv.appendChild(unlikeButton);
         postDiv.appendChild(deleteButton);
         postDiv.appendChild(commentInput); // Add comment input
         postDiv.appendChild(commentButton); // Add comment button
-        postDiv.appendChild(commentCount); // Add comment count
-        postDiv.appendChild(likesCount); // Add likes count
-        postDiv.appendChild(unlikesCount); // Add unlikes count
         postDiv.appendChild(commentsDiv); // Add comments display
 
         feed.appendChild(postDiv);
@@ -129,5 +104,6 @@ function renderPosts() {
 
 // Initial call to render posts from localStorage
 renderPosts();
+
 
 
