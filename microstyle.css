@@ -24,6 +24,13 @@ h2 {
     padding: 0;
     resize: none;
 }
+.comment-input {
+    width: calc(100% - 90px); /* Adjust width for the input field */
+    padding: 5px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
 
 button {
     background-color: #007BFF;
