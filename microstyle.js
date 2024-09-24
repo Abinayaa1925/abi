@@ -81,7 +81,7 @@ function renderPosts() {
         };
 
         const commentsDiv = document.createElement('div');
-        post.comments.forEach(comment => {
+        post.comments.forEach((comment, index) => {
             const commentDiv = document.createElement('div');
             const commentText = document.createElement('p');
             commentText.textContent = comment.content;
