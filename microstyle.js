@@ -8,6 +8,7 @@ function createPost() {
         id: posts.length,
         content: postContent,
         likes: 0,
+        unlikes: 0,
         date: new Date().toLocaleString(), // Current date and time
         comments: [] // Initialize comments as an empty array
     };
@@ -42,13 +43,13 @@ function renderPosts() {
         };
 
         const unlikeButton = document.createElement('button');
-        unlikeButton.textContent = `Unlike`;
+        unlikeButton.textContent = `Unlike (${post.unlikes})`;
         unlikeButton.onclick = () => {
-            if (post.likes > 0) {
-                post.likes--;
+            if (post.unlikes < post.likes) {
+                post.unlikes++;
+                localStorage.setItem('posts', JSON.stringify(posts)); // Update localStorage
+                renderPosts();
             }
-            localStorage.setItem('posts', JSON.stringify(posts)); // Update localStorage
-            renderPosts();
         };
 
         const deleteButton = document.createElement('button');
@@ -84,7 +85,7 @@ function renderPosts() {
         post.comments.forEach((comment) => {
             const commentDiv = document.createElement('div');
             const commentText = document.createElement('p');
-            commentText.textContent = comment.content; // Set comment text
+            commentText.textContent = comment.content;
 
             const likeCommentButton = document.createElement('button');
             likeCommentButton.textContent = `Like (${comment.likes})`;
@@ -94,21 +95,14 @@ function renderPosts() {
                 renderPosts(); // Re-render to show updated like count
             };
 
-            const unlikeCommentButton = document.createElement('button');
-            unlikeCommentButton.textContent = `Unlike`;
-            unlikeCommentButton.onclick = () => {
-                if (comment.likes > 0) {
-                    comment.likes--;
-                }
-                localStorage.setItem('posts', JSON.stringify(posts)); // Update localStorage
-                renderPosts(); // Re-render to show updated like count
-            };
-
             commentDiv.appendChild(commentText);
             commentDiv.appendChild(likeCommentButton);
-            commentDiv.appendChild(unlikeCommentButton);
             commentsDiv.appendChild(commentDiv);
         });
+
+        // Count of comments
+        const commentCount = document.createElement('p');
+        commentCount.textContent = `Comments (${post.comments.length})`;
 
         // Append elements to postDiv
         postDiv.appendChild(contentDiv);
@@ -118,6 +112,7 @@ function renderPosts() {
         postDiv.appendChild(deleteButton);
         postDiv.appendChild(commentInput); // Add comment input
         postDiv.appendChild(commentButton); // Add comment button
+        postDiv.appendChild(commentCount); // Add comment count
         postDiv.appendChild(commentsDiv); // Add comments display
 
         feed.appendChild(postDiv);
@@ -126,3 +121,4 @@ function renderPosts() {
 
 // Initial call to render posts from localStorage
 renderPosts();
+
