@@ -69,7 +69,11 @@ function renderPosts() {
         commentButton.textContent = 'Comment';
         commentButton.onclick = () => {
             if (commentInput.value.trim() !== "") {
-                post.comments.push(commentInput.value.trim());
+                const comment = {
+                    content: commentInput.value.trim(),
+                    likes: 0 // Initialize likes for the comment
+                };
+                post.comments.push(comment);
                 commentInput.value = ''; // Clear input field
                 localStorage.setItem('posts', JSON.stringify(posts)); // Update localStorage
                 renderPosts(); // Re-render to show comments
@@ -78,8 +82,31 @@ function renderPosts() {
 
         const commentsDiv = document.createElement('div');
         post.comments.forEach(comment => {
-            const commentDiv = document.createElement('p');
-            commentDiv.textContent = comment;
+            const commentDiv = document.createElement('div');
+            const commentText = document.createElement('p');
+            commentText.textContent = comment.content;
+
+            const likeCommentButton = document.createElement('button');
+            likeCommentButton.textContent = `Like (${comment.likes})`;
+            likeCommentButton.onclick = () => {
+                comment.likes++;
+                localStorage.setItem('posts', JSON.stringify(posts)); // Update localStorage
+                renderPosts(); // Re-render to show updated like count
+            };
+
+            const unlikeCommentButton = document.createElement('button');
+            unlikeCommentButton.textContent = `Unlike`;
+            unlikeCommentButton.onclick = () => {
+                if (comment.likes > 0) {
+                    comment.likes--;
+                }
+                localStorage.setItem('posts', JSON.stringify(posts)); // Update localStorage
+                renderPosts(); // Re-render to show updated like count
+            };
+
+            commentDiv.appendChild(commentText);
+            commentDiv.appendChild(likeCommentButton);
+            commentDiv.appendChild(unlikeCommentButton);
             commentsDiv.appendChild(commentDiv);
         });
 
