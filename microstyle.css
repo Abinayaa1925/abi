@@ -46,7 +46,7 @@ button:hover {
     background-color: #0056b3;
 }
 .delete-button {
-    background-color: #dc3545; /* Red color for delete button */
+    background-color: red; /* Red color for delete button */
 }
 
 .delete-button:hover {
