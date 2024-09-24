@@ -7,8 +7,8 @@ function createPost() {
     const post = {
         id: posts.length,
         content: postContent,
-        likes: 0,
-        dislikes: 0
+        liked: false,
+        likes: 0
     };
 
     posts.push(post);
@@ -28,22 +28,21 @@ function renderPosts() {
         contentDiv.textContent = post.content;
 
         const likeButton = document.createElement('button');
-        likeButton.textContent = `Like (${post.likes})`;
+        likeButton.textContent = post.liked ? `Unlike (${post.likes})` : `Like (${post.likes})`;
+        
         likeButton.onclick = () => {
-            post.likes++;
-            renderPosts();
-        };
-
-        const dislikeButton = document.createElement('button');
-        dislikeButton.textContent = `Dislike (${post.dislikes})`;
-        dislikeButton.onclick = () => {
-            post.dislikes++;
+            if (post.liked) {
+                post.likes--;
+                post.liked = false;
+            } else {
+                post.likes++;
+                post.liked = true;
+            }
             renderPosts();
         };
 
         postDiv.appendChild(contentDiv);
         postDiv.appendChild(likeButton);
-        postDiv.appendChild(dislikeButton);
         feed.appendChild(postDiv);
     });
 }
