@@ -47,10 +47,19 @@ function renderPosts() {
             renderPosts();
         };
 
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = `Delete`;
+        deleteButton.onclick = () => {
+            posts = posts.filter(p => p.id !== post.id); // Remove post by ID
+            renderPosts();
+        };
+
         postDiv.appendChild(contentDiv);
         postDiv.appendChild(dateDiv); // Append date
         postDiv.appendChild(likeButton); // Append like button
         postDiv.appendChild(unlikeButton); // Append unlike button
+        postDiv.appendChild(deleteButton); // Append delete button
         feed.appendChild(postDiv);
     });
 }
+
