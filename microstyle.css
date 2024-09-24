@@ -13,17 +13,18 @@ h2 {
     background-color: #fff;
     border-radius: 4px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 0;
+    padding: 20px;
     margin-bottom: 20px;
 }
 
 #post-content {
-    width: 10%;
+    width: calc(100% - 20px); /* Adjust width for padding */
     border: 1px solid #ccc;
     border-radius: 4px;
-    padding: 0;
+    padding: 10px;
     resize: none;
 }
+
 .comment-input {
     width: calc(100% - 90px); /* Adjust width for the input field */
     padding: 5px;
@@ -45,8 +46,10 @@ button {
 button:hover {
     background-color: #0056b3;
 }
+
 .delete-button {
     background-color: #FF0000; /* Red color for delete button */
+    color: #fff; /* Ensure text is white for contrast */
 }
 
 .delete-button:hover {
