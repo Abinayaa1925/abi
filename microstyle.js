@@ -104,6 +104,3 @@ function renderPosts() {
 
 // Initial call to render posts from localStorage
 renderPosts();
-
-
-
