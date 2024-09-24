@@ -104,6 +104,12 @@ function renderPosts() {
         const commentCount = document.createElement('p');
         commentCount.textContent = `Comments (${post.comments.length})`;
 
+        // Display likes and unlikes counts
+        const likesCount = document.createElement('p');
+        likesCount.textContent = `Likes: ${post.likes}`;
+        const unlikesCount = document.createElement('p');
+        unlikesCount.textContent = `Unlikes: ${post.unlikes}`;
+
         // Append elements to postDiv
         postDiv.appendChild(contentDiv);
         postDiv.appendChild(dateDiv);
@@ -113,6 +119,8 @@ function renderPosts() {
         postDiv.appendChild(commentInput); // Add comment input
         postDiv.appendChild(commentButton); // Add comment button
         postDiv.appendChild(commentCount); // Add comment count
+        postDiv.appendChild(likesCount); // Add likes count
+        postDiv.appendChild(unlikesCount); // Add unlikes count
         postDiv.appendChild(commentsDiv); // Add comments display
 
         feed.appendChild(postDiv);
@@ -121,4 +129,5 @@ function renderPosts() {
 
 // Initial call to render posts from localStorage
 renderPosts();
+
 
