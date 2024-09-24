@@ -1,4 +1,4 @@
-let posts = [];
+let posts = JSON.parse(localStorage.getItem('posts')) || []; // Load posts from localStorage
 
 function createPost() {
     const postContent = document.getElementById('post-content').value;
@@ -13,6 +13,7 @@ function createPost() {
     };
 
     posts.push(post);
+    localStorage.setItem('posts', JSON.stringify(posts)); // Save to localStorage
     document.getElementById('post-content').value = '';
     renderPosts();
 }
@@ -36,6 +37,7 @@ function renderPosts() {
         likeButton.textContent = `Like (${post.likes})`;
         likeButton.onclick = () => {
             post.likes++;
+            localStorage.setItem('posts', JSON.stringify(posts)); // Update localStorage
             renderPosts();
         };
 
@@ -45,6 +47,7 @@ function renderPosts() {
             if (post.likes > 0) {
                 post.likes--;
             }
+            localStorage.setItem('posts', JSON.stringify(posts)); // Update localStorage
             renderPosts();
         };
 
@@ -52,6 +55,7 @@ function renderPosts() {
         deleteButton.textContent = `Delete`;
         deleteButton.onclick = () => {
             posts = posts.filter(p => p.id !== post.id); // Remove post by ID
+            localStorage.setItem('posts', JSON.stringify(posts)); // Update localStorage
             renderPosts();
         };
 
@@ -67,6 +71,7 @@ function renderPosts() {
             if (commentInput.value.trim() !== "") {
                 post.comments.push(commentInput.value.trim());
                 commentInput.value = ''; // Clear input field
+                localStorage.setItem('posts', JSON.stringify(posts)); // Update localStorage
                 renderPosts(); // Re-render to show comments
             }
         };
@@ -91,3 +96,7 @@ function renderPosts() {
         feed.appendChild(postDiv);
     });
 }
+
+// Initial call to render posts from localStorage
+renderPosts();
+
