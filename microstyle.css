@@ -1,82 +1,69 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
+    color: #333;
     margin: 0;
     padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #4A90E2;
 }
 
 h2 {
     color: #333;
 }
 
-#post-section {
-    background-color: #fff;
-    border-radius: 4px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+#post-section, #feed-section {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    margin-bottom: 20px;
+    margin: 20px 0;
 }
 
-#post-content {
-    width: calc(100% - 20px); /* Adjust width for padding */
-    border: 1px solid #ccc;
-    border-radius: 4px;
+textarea {
+    width: 100%;
     padding: 10px;
-    resize: none;
-}
-
-.comment-input {
-    width: calc(100% - 90px); /* Adjust width for the input field */
-    padding: 5px;
-    margin-top: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    resize: none; /* Prevent resizing */
 }
 
 button {
-    background-color: #007BFF;
-    color: #fff;
+    background-color: #4A90E2;
+    color: white;
     border: none;
     border-radius: 4px;
     padding: 10px 15px;
-    cursor: pointer;
     margin-top: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #357ABD;
 }
 
-.delete-button {
-    background-color: #FF0000; /* Red color for delete button */
-    color: #fff; /* Ensure text is white for contrast */
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
 }
 
-.delete-button:hover {
-    background-color: #c82333; /* Darker red on hover */
-}
-
-#feed-section {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 15px;
+#feed {
+    max-width: 600px;
+    margin: auto;
 }
 
 .post {
-    border-bottom: 1px solid #eee;
-    padding: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 10px 0;
+    background: #f9f9f9;
 }
 
-.post:last-child {
-    border-bottom: none;
-}
-
-.post-date {
-    font-size: 0.8em;
-    color: #555;
-}
-
-button {
-    margin-right: 5px; /* Space between like/unlike buttons */
+.post p {
+    margin: 0 0 10px;
 }
