@@ -8,11 +8,18 @@
 </head>
 <body>
     <h1>Welcome to the postnest</h1>
+    
     <div id="post-section">
         <h2>Create a Post</h2>
         <textarea id="post-content" placeholder="What's on your mind?" rows="4"></textarea><br>
         <button id="post-button" onclick="createPost()">Post</button>
+    </div>
+
+    <div id="command-section">
+        <h2>Send a Command</h2>
+        <textarea id="command-content" placeholder="Enter a command..." rows="2"></textarea><br>
         <button id="command-button" onclick="sendCommand()">Send Command</button>
+        <p id="command-count">Commands Sent: 0</p>
     </div>
 
     <div id="feed-section">
