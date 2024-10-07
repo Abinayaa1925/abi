@@ -15,7 +15,7 @@ h2 {
     color: #333;
 }
 
-#post-section, #feed-section {
+#post-section, #command-section, #feed-section {
     background: white;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -66,4 +66,17 @@ button:disabled {
 
 .post p {
     margin: 0 0 10px;
+}
+
+#command-section {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px 0;
+}
+
+#command-count {
+    margin-top: 10px;
+    font-weight: bold;
 }
