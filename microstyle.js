@@ -16,13 +16,27 @@ function createPost() {
     renderPosts();
 }
 
-function toggleLike(postId) {
+function likePost(postId) {
     const post = posts.find(p => p.id === postId);
-    if (post) {
-        post.liked = !post.liked;
-        post.likeCount += post.liked ? 1 : -1; // Increment or decrement like count
+    if (post && !post.liked) {
+        post.liked = true;
+        post.likeCount++;
         renderPosts();
     }
+}
+
+function unlikePost(postId) {
+    const post = posts.find(p => p.id === postId);
+    if (post && post.liked) {
+        post.liked = false;
+        post.likeCount--;
+        renderPosts();
+    }
+}
+
+function sendCommand() {
+    // Placeholder for command functionality
+    alert("Command sent!");
 }
 
 function renderPosts() {
@@ -34,8 +48,11 @@ function renderPosts() {
         postDiv.className = 'post';
         postDiv.innerHTML = `
             <p>${post.content}</p>
-            <button onclick="toggleLike(${post.id})">
-                ${post.liked ? 'Unlike' : 'Like'} (${post.likeCount})
+            <button onclick="likePost(${post.id})" ${post.liked ? 'disabled' : ''}>
+                Like (${post.likeCount})
+            </button>
+            <button onclick="unlikePost(${post.id})" ${!post.liked ? 'disabled' : ''}>
+                Unlike
             </button>
         `;
         feed.appendChild(postDiv);
