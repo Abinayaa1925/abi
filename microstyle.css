@@ -6,21 +6,17 @@ body {
     padding: 20px;
 }
 
-h1 {
+h1, h2 {
     text-align: center;
-    color: #4A90E2;
-}
-
-h2 {
-    color: #333;
 }
 
 #post-section, #command-section, #feed-section {
-    background: white;
+    background: #fff;
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
     padding: 20px;
-    margin: 20px 0;
+    max-width: 600px;
 }
 
 textarea {
@@ -28,55 +24,40 @@ textarea {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    resize: none; /* Prevent resizing */
+    resize: vertical; /* Allows vertical resizing */
 }
 
 button {
-    background-color: #4A90E2;
+    background-color: #007BFF;
     color: white;
     border: none;
     border-radius: 4px;
     padding: 10px 15px;
-    margin-top: 10px;
     cursor: pointer;
     transition: background-color 0.3s;
+    margin-top: 10px;
 }
 
 button:hover {
-    background-color: #357ABD;
-}
-
-button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
+    background-color: #0056b3; /* Darker shade on hover */
 }
 
 #feed {
-    max-width: 600px;
-    margin: auto;
+    margin-top: 20px;
 }
 
-.post {
-    border: 1px solid #ddd;
-    border-radius: 5px;
+#feed div {
     padding: 15px;
-    margin: 10px 0;
-    background: #f9f9f9;
+    border-bottom: 1px solid #e0e0e0;
 }
 
-.post p {
-    margin: 0 0 10px;
+#feed div:last-child {
+    border-bottom: none; /* No border for the last post */
 }
 
-#command-section {
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin: 20px 0;
-}
-
-#command-count {
+span {
+    display: inline-block;
     margin-top: 10px;
-    font-weight: bold;
+    font-size: 14px;
+    color: #666;
 }
