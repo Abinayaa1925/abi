@@ -1,12 +1,17 @@
 let postCount = 0;
 let commandCount = 0;
 
+// Load posts from localStorage on page load
+window.onload = function() {
+    loadPosts();
+    loadCommands();
+}
+
 // Function to handle login
 function login() {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-    // Basic login validation (you can replace this with real authentication)
     if (username && password) {
         document.getElementById('login-section').style.display = 'none';
         document.getElementById('app-section').style.display = 'block';
@@ -22,7 +27,6 @@ function createPost() {
 
     postCount++;
     const postId = `post-${postCount}`;
-    
     const date = new Date().toLocaleString(); // Get the current date and time
 
     const feed = document.getElementById('feed');
@@ -40,6 +44,8 @@ function createPost() {
 
     feed.appendChild(postDiv);
     document.getElementById('post-content').value = ''; // Clear textarea
+
+    savePostToLocalStorage(postId, content, date);
 }
 
 // Function to send a command
@@ -49,7 +55,6 @@ function sendCommand() {
 
     commandCount++;
     const commandId = `command-${commandCount}`;
-    
     const date = new Date().toLocaleString(); // Get the current date and time
 
     const commandFeed = document.getElementById('command-feed');
@@ -67,6 +72,62 @@ function sendCommand() {
 
     commandFeed.appendChild(commandDiv);
     document.getElementById('command-content').value = ''; // Clear textarea
+
+    saveCommandToLocalStorage(commandId, commandContent, date);
+}
+
+// Function to save post to localStorage
+function savePostToLocalStorage(postId, content, date) {
+    let posts = JSON.parse(localStorage.getItem('posts')) || [];
+    posts.push({ id: postId, content, date });
+    localStorage.setItem('posts', JSON.stringify(posts));
+}
+
+// Function to load posts from localStorage
+function loadPosts() {
+    let posts = JSON.parse(localStorage.getItem('posts')) || [];
+    posts.forEach(post => {
+        const feed = document.getElementById('feed');
+        const postDiv = document.createElement('div');
+        postDiv.id = post.id;
+        postDiv.innerHTML = `
+            <p>${post.content}</p>
+            <span style="font-size: 12px; color: gray;">Posted on: ${post.date}</span><br>
+            <button onclick="likePost('${post.id}')">Like</button>
+            <button onclick="unlikePost('${post.id}')">Unlike</button>
+            <button class="delete-button" onclick="deletePost('${post.id}')">Delete</button>
+            <span id="like-count-${post.id}">Likes: 0</span>
+            <hr>
+        `;
+        feed.appendChild(postDiv);
+    });
+}
+
+// Function to save command to localStorage
+function saveCommandToLocalStorage(commandId, content, date) {
+    let commands = JSON.parse(localStorage.getItem('commands')) || [];
+    commands.push({ id: commandId, content, date });
+    localStorage.setItem('commands', JSON.stringify(commands));
+}
+
+// Function to load commands from localStorage
+function loadCommands() {
+    let commands = JSON.parse(localStorage.getItem('commands')) || [];
+    commands.forEach(command => {
+        const commandFeed = document.getElementById('command-feed');
+        const commandDiv = document.createElement('div');
+        commandDiv.id = command.id;
+        commandDiv.innerHTML = `
+            <p>${command.content}</p>
+            <span style="font-size: 12px; color: gray;">Command sent on: ${command.date}</span><br>
+            <button onclick="likeCommand('${command.id}')">Like</button>
+            <button onclick="unlikeCommand('${command.id}')">Unlike</button>
+            <button class="delete-button" onclick="deleteCommand('${command.id}')">Delete</button>
+            <span id="command-like-count-${command.id}">Likes: 0</span>
+            <hr>
+        `;
+        commandFeed.appendChild(commandDiv);
+    });
 }
 
 // Like functionality for posts
@@ -91,6 +152,14 @@ function deletePost(postId) {
     if (postDiv) {
         postDiv.remove(); // Remove the post from the feed
     }
+    removePostFromLocalStorage(postId);
+}
+
+// Remove post from localStorage
+function removePostFromLocalStorage(postId) {
+    let posts = JSON.parse(localStorage.getItem('posts')) || [];
+    posts = posts.filter(post => post.id !== postId);
+    localStorage.setItem('posts', JSON.stringify(posts));
 }
 
 // Like functionality for commands
@@ -115,4 +184,12 @@ function deleteCommand(commandId) {
     if (commandDiv) {
         commandDiv.remove(); // Remove the command from the feed
     }
+    removeCommandFromLocalStorage(commandId);
+}
+
+// Remove command from localStorage
+function removeCommandFromLocalStorage(commandId) {
+    let commands = JSON.parse(localStorage.getItem('commands')) || [];
+    commands = commands.filter(command => command.id !== commandId);
+    localStorage.setItem('commands', JSON.stringify(commands));
 }
