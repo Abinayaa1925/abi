@@ -1,5 +1,19 @@
 let postCount = 0;
 
+// Function to handle login
+function login() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    // Basic login validation (you can replace this with real authentication)
+    if (username && password) {
+        document.getElementById('login-section').style.display = 'none';
+        document.getElementById('app-section').style.display = 'block';
+    } else {
+        alert("Please enter both username and password.");
+    }
+}
+
 // Function to create a post
 function createPost() {
     const content = document.getElementById('post-content').value;
@@ -15,7 +29,7 @@ function createPost() {
         <p>${content}</p>
         <button onclick="likePost('${postId}')">Like</button>
         <button onclick="unlikePost('${postId}')">Unlike</button>
-        <button onclick="deletePost('${postId}')">Delete</button>
+        <button class="delete-button" onclick="deletePost('${postId}')">Delete</button>
         <span id="like-count-${postId}">Likes: 0</span>
         <hr>
     `;
