@@ -1,74 +1,51 @@
-let posts = [];
+let postCount = 0;
 let commandCount = 0;
 
+// Function to create a post
 function createPost() {
     const content = document.getElementById('post-content').value;
-    if (content.trim() === '') return;
+    if (!content) return; // Prevent empty posts
 
-    const post = {
-        id: Date.now(),
-        content: content,
-        likeCount: 0,
-        liked: false,
-    };
+    postCount++;
+    const postId = `post-${postCount}`;
+    
+    const feed = document.getElementById('feed');
+    const postDiv = document.createElement('div');
+    postDiv.id = postId;
+    postDiv.innerHTML = `
+        <p>${content}</p>
+        <button onclick="likePost('${postId}')">Like</button>
+        <button onclick="unlikePost('${postId}')">Unlike</button>
+        <span id="like-count-${postId}">Likes: 0</span>
+        <hr>
+    `;
 
-    posts.push(post);
+    feed.appendChild(postDiv);
     document.getElementById('post-content').value = ''; // Clear textarea
-    renderPosts();
 }
 
+// Like functionality
 function likePost(postId) {
-    const post = posts.find(p => p.id === postId);
-    if (post && !post.liked) {
-        post.liked = true;
-        post.likeCount++;
-        renderPosts();
-    }
+    const likeCountElement = document.getElementById(`like-count-${postId}`);
+    let currentLikes = parseInt(likeCountElement.innerText.split(': ')[1]);
+    likeCountElement.innerText = `Likes: ${currentLikes + 1}`;
 }
 
+// Unlike functionality
 function unlikePost(postId) {
-    const post = posts.find(p => p.id === postId);
-    if (post && post.liked) {
-        post.liked = false;
-        post.likeCount--;
-        renderPosts();
+    const likeCountElement = document.getElementById(`like-count-${postId}`);
+    let currentLikes = parseInt(likeCountElement.innerText.split(': ')[1]);
+    if (currentLikes > 0) {
+        likeCountElement.innerText = `Likes: ${currentLikes - 1}`;
     }
 }
 
-function deletePost(postId) {
-    posts = posts.filter(post => post.id !== postId);
-    renderPosts();
-}
-
+// Command functionality (example)
 function sendCommand() {
-    const commandContent = document.getElementById('command-content').value;
-    if (commandContent.trim() === '') return;
+    const command = document.getElementById('command-content').value;
+    if (!command) return; // Prevent empty commands
 
     commandCount++;
-    document.getElementById('command-content').value = ''; // Clear textarea
     document.getElementById('command-count').innerText = `Commands Sent: ${commandCount}`;
-    alert("Command sent: " + commandContent);
-}
-
-function renderPosts() {
-    const feed = document.getElementById('feed');
-    feed.innerHTML = ''; // Clear existing posts
-
-    posts.forEach(post => {
-        const postDiv = document.createElement('div');
-        postDiv.className = 'post';
-        postDiv.innerHTML = `
-            <p>${post.content}</p>
-            <button onclick="likePost(${post.id})" ${post.liked ? 'disabled' : ''}>
-                Like (${post.likeCount})
-            </button>
-            <button onclick="unlikePost(${post.id})" ${!post.liked ? 'disabled' : ''}>
-                Unlike
-            </button>
-            <button onclick="deletePost(${post.id})">
-                Delete
-            </button>
-        `;
-        feed.appendChild(postDiv);
-    });
+    document.getElementById('command-content').value = ''; // Clear textarea
 }
