@@ -1,57 +1,49 @@
-let posts = [];
+let postCount = 0;
 
+// Function to create a post
 function createPost() {
-    const content = document.getElementById('post-content').value.trim();
-    if (!content) {
-        alert('Please enter some content for your post.');
-        return;
-    }
-    
-    const newPost = {
-        content: content,
-        likes: 0,
-        liked: false
-    };
-    
-    posts.push(newPost);
-    document.getElementById('post-content').value = ''; // Clear textarea
-    updateFeed();
-}
+    const content = document.getElementById('post-content').value;
+    if (!content) return; // Prevent empty posts
 
-function updateFeed() {
+    postCount++;
+    const postId = `post-${postCount}`;
+    
     const feed = document.getElementById('feed');
-    feed.innerHTML = ''; // Clear previous feed
+    const postDiv = document.createElement('div');
+    postDiv.id = postId;
+    postDiv.innerHTML = `
+        <p>${content}</p>
+        <button onclick="likePost('${postId}')">Like</button>
+        <button onclick="unlikePost('${postId}')">Unlike</button>
+        <button onclick="deletePost('${postId}')">Delete</button>
+        <span id="like-count-${postId}">Likes: 0</span>
+        <hr>
+    `;
 
-    posts.forEach((post, index) => {
-        const postDiv = document.createElement('div');
-        postDiv.className = 'post';
-        
-        const content = document.createElement('p');
-        content.textContent = post.content;
-        
-        const likeButton = document.createElement('button');
-        likeButton.textContent = post.liked ? 'Unlike' : 'Like';
-        likeButton.onclick = () => toggleLike(index);
-
-        const likeCount = document.createElement('span');
-        likeCount.textContent = ` (${post.likes})`;
-
-        postDiv.appendChild(content);
-        postDiv.appendChild(likeButton);
-        postDiv.appendChild(likeCount);
-        
-        feed.appendChild(postDiv);
-    });
+    feed.appendChild(postDiv);
+    document.getElementById('post-content').value = ''; // Clear textarea
 }
 
-function toggleLike(index) {
-    const post = posts[index];
-    if (post.liked) {
-        post.likes--;
-        post.liked = false;
-    } else {
-        post.likes++;
-        post.liked = true;
+// Like functionality
+function likePost(postId) {
+    const likeCountElement = document.getElementById(`like-count-${postId}`);
+    let currentLikes = parseInt(likeCountElement.innerText.split(': ')[1]);
+    likeCountElement.innerText = `Likes: ${currentLikes + 1}`;
+}
+
+// Unlike functionality
+function unlikePost(postId) {
+    const likeCountElement = document.getElementById(`like-count-${postId}`);
+    let currentLikes = parseInt(likeCountElement.innerText.split(': ')[1]);
+    if (currentLikes > 0) {
+        likeCountElement.innerText = `Likes: ${currentLikes - 1}`;
     }
-    updateFeed();
+}
+
+// Delete functionality
+function deletePost(postId) {
+    const postDiv = document.getElementById(postId);
+    if (postDiv) {
+        postDiv.remove(); // Remove the post from the feed
+    }
 }
