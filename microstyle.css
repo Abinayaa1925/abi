@@ -89,7 +89,7 @@ button.delete-button:hover {
     background-color: #c82333; /* Darker shade for hover */
 }
 
-#feed {
+#feed, #command-feed {
     margin-top: 20px;
 }
 
@@ -108,4 +108,5 @@ span {
     font-size: 14px;
     color: #666;
 }
+
 
