@@ -10,6 +10,42 @@ h1, h2 {
     text-align: center;
 }
 
+#login-section {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 400px;
+}
+
+#login-section input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px; /* Space between input fields */
+}
+
+#login-section button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#login-section button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+#app-section {
+    display: none; /* Initially hidden until logged in */
+}
+
 #post-section, #feed-section {
     background: #fff;
     border-radius: 8px;
@@ -24,17 +60,17 @@ textarea {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    resize: vertical; /* Allows vertical resizing */
+    resize: vertical;
 }
 
 button {
-    background-color: #007BFF;
+    background-color: #007BFF; /* Default button color */
     color: white;
     border: none;
     border-radius: 4px;
     padding: 10px 15px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s; /* Added transform for hover effect */
+    transition: background-color 0.3s, transform 0.2s;
     margin-top: 10px;
     margin-right: 5px; /* Space between buttons */
 }
