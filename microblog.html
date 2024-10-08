@@ -7,16 +7,27 @@
     <link rel="stylesheet" href="microstyle.css">
 </head>
 <body>
-    <h1>welcome to postnest</h1>
-    <div id="post-section">
-        <h2>Create a Post</h2>
-        <textarea id="post-content" placeholder="What's on your mind?" rows="4"></textarea><br>
-        <button id="post-button" onclick="createPost()">Post</button>
+    <div id="login-section">
+        <h1>Login to Postnest</h1>
+        <div>
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button onclick="login()">Login</button>
+        </div>
     </div>
 
-    <div id="feed-section">
-        <h2>Your Feed</h2>
-        <div id="feed"></div>
+    <div id="app-section" style="display:none;">
+        <h1>Welcome to Postnest</h1>
+        <div id="post-section">
+            <h2>Create a Post</h2>
+            <textarea id="post-content" placeholder="What's on your mind?" rows="4"></textarea><br>
+            <button id="post-button" onclick="createPost()">Post</button>
+        </div>
+
+        <div id="feed-section">
+            <h2>Your Feed</h2>
+            <div id="feed"></div>
+        </div>
     </div>
 
     <script src="microstyle.js"></script>
