@@ -46,7 +46,7 @@ h1, h2 {
     display: none; /* Initially hidden until logged in */
 }
 
-#post-section, #feed-section {
+#post-section, #command-section, #feed-section {
     background: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -60,7 +60,7 @@ textarea {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    resize: vertical;
+    resize: vertical; /* Allows vertical resizing */
 }
 
 button {
@@ -70,7 +70,7 @@ button {
     border-radius: 4px;
     padding: 10px 15px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
+    transition: background-color 0.3s, transform 0.2s; /* Added transform for hover effect */
     margin-top: 10px;
     margin-right: 5px; /* Space between buttons */
 }
@@ -93,13 +93,13 @@ button.delete-button:hover {
     margin-top: 20px;
 }
 
-#feed div {
+#feed div, #command-feed div {
     padding: 15px;
     border-bottom: 1px solid #e0e0e0;
 }
 
-#feed div:last-child {
-    border-bottom: none; /* No border for the last post */
+#feed div:last-child, #command-feed div:last-child {
+    border-bottom: none; /* No border for the last post/command */
 }
 
 span {
