@@ -23,11 +23,14 @@ function createPost() {
     postCount++;
     const postId = `post-${postCount}`;
     
+    const date = new Date().toLocaleString(); // Get the current date and time
+
     const feed = document.getElementById('feed');
     const postDiv = document.createElement('div');
     postDiv.id = postId;
     postDiv.innerHTML = `
         <p>${content}</p>
+        <span style="font-size: 12px; color: gray;">Posted on: ${date}</span><br>
         <button onclick="likePost('${postId}')">Like</button>
         <button onclick="unlikePost('${postId}')">Unlike</button>
         <button class="delete-button" onclick="deletePost('${postId}')">Delete</button>
@@ -47,11 +50,14 @@ function sendCommand() {
     commandCount++;
     const commandId = `command-${commandCount}`;
     
+    const date = new Date().toLocaleString(); // Get the current date and time
+
     const commandFeed = document.getElementById('command-feed');
     const commandDiv = document.createElement('div');
     commandDiv.id = commandId;
     commandDiv.innerHTML = `
         <p>${commandContent}</p>
+        <span style="font-size: 12px; color: gray;">Command sent on: ${date}</span><br>
         <button onclick="likeCommand('${commandId}')">Like</button>
         <button onclick="unlikeCommand('${commandId}')">Unlike</button>
         <button class="delete-button" onclick="deleteCommand('${commandId}')">Delete</button>
