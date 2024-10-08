@@ -44,6 +44,15 @@ button:hover {
     transform: scale(1.05); /* Slightly enlarge button on hover */
 }
 
+/* Specific styles for the Delete button */
+button.delete-button {
+    background-color: #dc3545; /* Bootstrap danger color */
+}
+
+button.delete-button:hover {
+    background-color: #c82333; /* Darker shade for hover */
+}
+
 #feed {
     margin-top: 20px;
 }
