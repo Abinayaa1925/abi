@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Menu</title>
+    <link rel="stylesheet" href="fooddelivery.css">
+</head>
+<body>
+
+<h1>Restaurant Menu</h1>
+
+<button id="showBurgers" onclick="showShop('burger')">Show Burgers</button>
+<button id="showPizzas" onclick="showShop('pizza')">Show Pizzas</button>
+<button id="showPasta" onclick="showShop('pasta')">Show Pasta</button>
+<button id="showNoodles" onclick="showShop('noodles')">Show Noodles</button>
+
+<div id="shopTitle"></div>
+<div id="shopDishes"></div>
+
+<h2>Cart</h2>
+<ul id="cartItems"></ul>
+<p>Total Price: $<span id="totalPrice">0.00</span></p>
+<button id="checkoutButton" onclick="checkout()">Checkout</button>
+
+<script src="delivery.js"></script>
+</body>
+</html>
