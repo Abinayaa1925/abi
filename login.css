@@ -34,7 +34,7 @@
 }
 
 .ad-card span {
-  font-weight: bold;
+  font-weight: 700;
   color: #e74c3c; /* Price color */
   font-size: 1.2em; /* Slightly larger for emphasis */
 }
