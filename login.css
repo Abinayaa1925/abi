@@ -1,0 +1,89 @@
+/* General Styles for Ad Cards */
+.ad-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin: 15px 0;
+  padding: 15px;
+  background-color: white;
+  transition: transform 0.2s;
+}
+
+.ad-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Image Styles */
+.ad-card img {
+  width: 100%;
+  max-width: 250px; /* Adjust width for a better layout */
+  height: auto;
+  border-radius: 5px;
+}
+
+/* Heading Styles */
+.ad-card h3 {
+  margin-top: 10px;
+  color: #333;
+}
+
+/* Description and Price Styles */
+.ad-card p {
+  color: #555;
+  font-size: 1.1em;
+}
+
+.ad-card span {
+  font-weight: bold;
+  color: #e74c3c; /* Price color */
+  font-size: 1.2em; /* Slightly larger for emphasis */
+}
+
+/* Button Styles */
+.delete-btn {
+  background-color: #e74c3c; /* Red for delete */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b; /* Darker red on hover */
+}
+
+/* Logout Button */
+#logout {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #3498db; /* Blue for logout */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#logout:hover {
+  background-color: #2980b9; /* Darker blue on hover */
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+  .ad-card {
+    margin: 10px 0;
+    padding: 10px;
+  }
+
+  .ad-card img {
+    max-width: 100%; /* Full width on smaller screens */
+  }
+
+  .delete-btn, #logout {
+    width: 100%; /* Full width for buttons */
+  }
+}
