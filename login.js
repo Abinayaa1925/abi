@@ -1,24 +1,34 @@
-// Handle login form submission
-document.getElementById('login-form').addEventListener('submit', function(event) {
-  event.preventDefault();
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
 
-  // Get username and password
-  const username = document.getElementById('username').value;
-  const password = document.getElementById('password').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
 
-  // Dummy credentials for simplicity
-  const validUsername = "abi";
-  const validPassword = "abi1925";
+    // Basic validation
+    if (!email || !password) {
+        document.getElementById('errorMessage').innerText = 'Please enter both email and password';
+        document.getElementById('errorMessage').style.display = 'block';
+        return;
+    }
 
-  // Check if credentials are correct
-  if (username === validUsername && password === validPassword) {
-    // Store login status in localStorage
-    localStorage.setItem("loggedIn", "true");
+    // Simulate a backend API request for login (replace with actual API)
+    // Here, I'm using dummy login logic for simulation
+    const usersDB = [
+        { email: 'employee@example.com', password: 'password123', role: 'employee' },
+        { email: 'manager@example.com', password: 'password123', role: 'manager' },
+    ];
 
-    // Redirect to ads page
-    window.location.href = "ads.html";
-  } else {
-    // Display error message if login fails
-    document.getElementById('error-message').textContent = "Invalid username or password!";
-  }
+    const user = usersDB.find(u => u.email === email && u.password === password);
+
+    if (user) {
+        // Store the user's role and email in localStorage to simulate authentication
+        const token = btoa(JSON.stringify({ email: user.email, role: user.role }));
+        localStorage.setItem('authToken', token);
+
+        // Redirect to the dashboard after successful login
+        window.location.href = 'dashboard.html';
+    } else {
+        document.getElementById('errorMessage').innerText = 'Invalid credentials';
+        document.getElementById('errorMessage').style.display = 'block';
+    }
 });

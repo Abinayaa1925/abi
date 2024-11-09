@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply for Leave</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Apply for Leave</h1>
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="history.html">Leave History</a>
+            <a href="login.html" onclick="logout()">Logout</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="apply-leave">
+            <h2>Leave Application Form</h2>
+            <form id="leaveForm">
+                <label for="leaveType">Leave Type:</label>
+                <select id="leaveType" required>
+                    <option value="Casual Leave">Casual Leave</option>
+                    <option value="Sick Leave">Sick Leave</option>
+                    <option value="Earned Leave">Earned Leave</option>
+                </select>
+                <label for="startDate">Start Date:</label>
+                <input type="date" id="startDate" required>
+                <label for="endDate">End Date:</label>
+                <input type="date" id="endDate" required>
+                <label for="reason">Reason:</label>
+                <textarea id="reason" required></textarea>
+                <button type="submit">Submit Leave Request</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Leave Management System. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('leaveForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const leaveType = document.getElementById('leaveType').value;
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
+            const reason = document.getElementById('reason').value;
+
+            if (!leaveType || !startDate || !endDate || !reason) {
+                alert('Please fill all fields');
+                return;
+            }
+
+            // Simulate leave application submission
+            alert('Leave applied successfully');
+            window.location.href = 'dashboard.html'; // Redirect to dashboard after submitting
+        });
+
+        function logout() {
+            localStorage.removeItem('authToken');
+        }
+    </script>
+</body>
+</html>

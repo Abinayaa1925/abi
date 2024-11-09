@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Leave Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Your Dashboard</h1>
+        <nav>
+            <a href="apply_leave.html">Apply for Leave</a>
+            <a href="history.html">Leave History</a>
+            <a href="login.html" onclick="logout()">Logout</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="leave-info">
+            <h2>Your Leave Balances</h2>
+            <div id="leaveBalances">
+                <!-- Leave balances will be injected here -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Leave Management System. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Simulate fetching leave balance data (this would normally come from the backend)
+        const leaveBalances = [
+            { leaveName: 'Casual Leave', balance: 10 },
+            { leaveName: 'Sick Leave', balance: 5 },
+            { leaveName: 'Earned Leave', balance: 8 }
+        ];
+
+        window.onload = () => {
+            const leaveBalancesContainer = document.getElementById('leaveBalances');
+            leaveBalances.forEach(leave => {
+                leaveBalancesContainer.innerHTML += `<p>${leave.leaveName}: ${leave.balance} days</p>`;
+            });
+        };
+
+        function logout() {
+            localStorage.removeItem('authToken');
+        }
+    </script>
+</body>
+</html>

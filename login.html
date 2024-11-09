@@ -1,30 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login Page</title>
-  <link rel="stylesheet" href="login.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Leave Management System</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header>
+        <h1>Leave Management System</h1>
+        <nav>
+            <a href="index.html">Home</a>
+        </nav>
+    </header>
 
-  <div class="login-container">
-    <h1>Login</h1>
-    <form id="login-form">
-      <div class="input-group">
-        <label for="username">Username:</label>
-        <input type="text" id="username" required>
-      </div>
-      <div class="input-group">
-        <label for="password">Password:</label>
-        <input type="password" id="password" required>
-      </div>
-      <button type="submit" class="login-btn">Login</button>
-    </form>
-    <p id="error-message" style="color: red;"></p>
-  </div>
+    <main>
+        <section class="login">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <button type="submit">Login</button>
+            </form>
+            <p id="errorMessage" style="color:red; display:none;"></p>
+        </section>
+    </main>
 
-  <script src="login.js"></script>
+    <footer>
+        <p>&copy; 2024 Leave Management System. All rights reserved.</p>
+    </footer>
 
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Basic validation (this can be improved)
+            if (!email || !password) {
+                document.getElementById('errorMessage').innerText = 'Please enter both email and password';
+                document.getElementById('errorMessage').style.display = 'block';
+                return;
+            }
+
+            // Simulate login request
+            // Ideally, send a POST request to your backend here
+            const response = { status: 'success', token: 'dummy_token' };
+
+            if (response.status === 'success') {
+                localStorage.setItem('authToken', response.token);
+                window.location.href = 'dashboard.html'; // Redirect to dashboard
+            } else {
+                document.getElementById('errorMessage').innerText = 'Invalid credentials';
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+        });
+    </script>
 </body>
 </html>
