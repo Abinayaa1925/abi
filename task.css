@@ -1,26 +1,51 @@
 /* Global styles */
 body {
     font-family: Arial, sans-serif;
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
     padding: 20px;
+    background-color: #f4f7fa;
+}
+
+/* Title */
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+/* Task input section */
+div {
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 input[type="text"], select {
     padding: 10px;
-    margin: 10px 0;
-    width: 80%;
+    margin: 10px;
+    width: 60%;
+    border-radius: 5px;
+    border: 1px solid #ddd;
 }
 
 button {
     padding: 10px 15px;
     cursor: pointer;
+    background-color: #5bc0de;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
 }
 
+button:hover {
+    background-color: #31b0d5;
+}
+
+/* Table styles */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 table, th, td {
@@ -28,15 +53,32 @@ table, th, td {
 }
 
 th, td {
-    padding: 10px;
+    padding: 12px;
     text-align: left;
+    font-size: 14px;
 }
 
-/* Status class styles */
+/* Header styles */
+th {
+    background-color: #0275d8;
+    color: white;
+}
+
+/* Row styles */
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+/* Status styling */
 .status {
-    font-weight: bold;
-    padding: 5px;
+    padding: 5px 10px;
     border-radius: 5px;
+    font-weight: bold;
+    display: inline-block;
 }
 
 .Pending {
@@ -52,4 +94,25 @@ th, td {
 .Completed {
     background-color: #5bc0de;
     color: white;
+}
+
+/* Select and button styling inside action cell */
+select {
+    padding: 5px;
+    margin-right: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+button {
+    padding: 5px 10px;
+    font-size: 12px;
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #c9302c;
 }
