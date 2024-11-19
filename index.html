@@ -5,29 +5,111 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
     <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
         body {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
-            margin: 0;
-            text-align: center;
             background-color: #f4f4f4;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+        }
+
+        /* Main Heading Styling */
+        h1 {
+            font-size: 3rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #34495e;
+            margin-bottom: 20px;
+        }
+
+        /* Paragraph Styling */
+        p {
+            font-size: 1.25rem;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+        }
+
+        /* Link Styling */
+        a {
+            text-decoration: none;
+            color: #2980b9;
+            font-size: 1.25rem;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        a:hover {
+            background-color: #3498db;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Background Styling */
+        body {
+            background-image: url('https://www.w3schools.com/w3images/coffee.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* Container Styling */
+        .container {
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        /* Small Screen Adjustments */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            a {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>WELCOME</h1>
-    <h1>FULL STACK WEB DEVELOPMENT LABORATORY</h1>
-    <p>By ABINAYA A</p>
-    <h2>List Of Experiments:</h2>
-    <a href="portfolio.html">Portfolio</a><br>
-    <a href="todolist.html">To-Do List</a><br>
-    <a href="microblog.html">Microblog</a><br>
-    <a href="fooddelivery.html">Food Delivery</a><br>
-    <a href="index(2).html">index(2)</a><br>
-    <a href="task.html">task</a><br>
-    <a href="survey.html">survey</a><br>
+
+    <div class="container">
+        <h1>WELCOME</h1>
+        <h1>FULL STACK WEB DEVELOPMENT LABORATORY</h1>
+        <p>By ABINAYA A</p>
+        <h2>List Of Experiments:</h2>
+        <a href="portfolio.html">Portfolio</a><br>
+        <a href="todolist.html">To-Do List</a><br>
+        <a href="microblog.html">Microblog</a><br>
+        <a href="fooddelivery.html">Food Delivery</a><br>
+        <a href="index(2).html">index(2)</a><br>
+        <a href="task.html">Task</a><br>
+        <a href="survey.html">Survey</a><br>
+    </div>
+
 </body>
 </html>
